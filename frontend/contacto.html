@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Tienda — Contacto</title>
+
+  <!-- Fuente moderna -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="contenedor nav-contenido">
+      <a href="index.html" class="logo"> Mi<strong>Tienda</strong></a>
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#productos">Productos</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <br><br><br><br>
+
+ 
+  <main class="contenedor" id="inicio">
+    <div class="encabezado-principal">
+      <h1>Sistema de Gestión de Productos</h1>
+      <p>Panel de control conectado a MySQL y Express</p>
+    </div>
+
+    <br><br>
+
+    <section class="tarjeta" id="registro">
+      <h2>Envíanos un mensaje</h2>
+
+     
+      <form id="formularioContacto">
+        <div class="campo">
+          <label for="contactoNombre">Nombre completo</label>
+          <input type="text" id="contactoNombre" placeholder="Ingresa tu nombre completo" required />
+        </div>
+
+        <div class="campo">
+          <label for="contactoCorreo">Correo Electrónico</label>
+          <input type="email" id="contactoCorreo" placeholder="Ingresa tu correo electrónico" required />
+        </div>
+
+        <div class="campo">
+          <label for="contactoAsunto">Asunto</label>
+          <input type="text" id="contactoAsunto" placeholder="Escribe el asunto de tu mensaje" required />
+        </div>
+
+        <div class="campo">
+          <label for="contactoMensaje">Mensaje</label>
+          <textarea id="contactoMensaje" rows="4" placeholder="Escribe tu mensaje, duda, queja o reclamo aquí"
+            required></textarea>
+        </div>
+
+        <div class="acciones-form">
+          <button type="submit" id="btnEnviar" class="btn btn-guardar">Enviar Mensaje</button>
+        </div>
+      </form>
+    </section>
+
+    <br><br>
+
+  
+
+    <section class="tarjeta" id="historial">
+      <h2>Historial de mensajes</h2>
+      <div id="listaMensajes">
+        <p style="color: #6d9cdd;">Cargando mensajes</p>
+      </div>
+    </section>
+  </main>
+
+  <br><br><br><br>
+
+  <!-- PIE DE PAGINA-->
+  <footer class="footer">
+    <div class="contenedor footer-contenido">
+      <p>&copy; 2026 Mi Tienda — Proyecto Formativo con Node.js, Express y MySQL.</p>
+    </div>
+  </footer>
+
+  
+  <script src="app.js"></script>
+
+</body>
+
+</html>
