@@ -11,13 +11,13 @@ const btnGuardar = document.getElementById("btnGuardar");
 const btnCancelar = document.getElementById("btnCancelar");
 const tituloFormulario = document.getElementById("tituloFormulario");
 
-// ===== Elementos del DOM (contacto) =====
+
 const formContacto = document.getElementById("formularioContacto");
 const listaMensajes = document.getElementById("listaMensajes");
 
 // 1. Función para consultar los productos y mostrarlos en el DOM (READ)
 async function cargarProductos() {
-  if (!listaProductos) return; // Si la página no tiene productos (contacto.html), no hace nada
+  if (!listaProductos) return; 
 
   try {
     const respuesta = await fetch(`${API_URL}/productos`);
@@ -53,7 +53,7 @@ async function cargarProductos() {
   }
 }
 
-// 2. Cargar datos del producto en el formulario para editar (UPDATE - Paso 1)
+// Cargar datos del producto en el formulario para editar (UPDATE - Paso 1)
 function cargarEnFormulario(id, nombre, precio, stock) {
   productoId.value = id;
   nombreInput.value = nombre;
@@ -106,8 +106,8 @@ if (formulario) {
         });
       }
 
-      cancelarEdicion(); // Limpiar formulario y restaurar botones
-      cargarProductos(); // Refrescar la lista en pantalla
+      cancelarEdicion(); 
+      cargarProductos(); 
     } catch (error) {
       console.error("Error al guardar el producto:", error);
     }
@@ -124,22 +124,21 @@ async function eliminarProducto(id) {
       method: "DELETE",
     });
 
-    // Si estábamos editando ese mismo producto, cancelamos la edición
+    
     if (productoId && productoId.value == id) {
       cancelarEdicion();
     }
 
-    cargarProductos(); // Refrescar la lista en pantalla
+    cargarProductos(); 
   } catch (error) {
     console.error("Error al eliminar producto:", error);
   }
 }
 
-// ===================================================
-// 5. MENSAJES DE CONTACTO (contacto.html)
-// ===================================================
 
-// Evita que el texto escrito por el usuario se interprete como HTML
+
+// seccion de historial de mensaje
+
 function escapar(texto) {
   const div = document.createElement("div");
   div.textContent = texto;
@@ -148,7 +147,7 @@ function escapar(texto) {
 
 // GET: cargar el historial de mensajes
 async function cargarMensajes() {
-  if (!listaMensajes) return; // Si la página no tiene historial (index.html), no hace nada
+  if (!listaMensajes) return; 
 
   try {
     const respuesta = await fetch(`${API_URL}/mensajes`);
@@ -166,8 +165,7 @@ async function cargarMensajes() {
       const elemento = document.createElement("div");
       elemento.classList.add("producto");
 
-      // CORREGIDO: la BD devuelve nombre_completo y correo_electronico
-      // (antes se leía m.nombre y m.correo, que no existen y salían "undefined")
+    
       elemento.innerHTML = `
         <div>
           <h3>${escapar(m.asunto)}</h3>
@@ -192,8 +190,6 @@ if (formContacto) {
   formContacto.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // CORREGIDO: las claves deben ser IGUALES a las que espera server.js
-    // (antes se enviaban "nombre" y "correo" y el servidor respondía 400)
     const datos = {
       nombre_completo: document.getElementById("contactoNombre").value.trim(),
       correo_electronico: document.getElementById("contactoCorreo").value.trim(),
@@ -209,7 +205,7 @@ if (formContacto) {
       });
 
       if (!respuesta.ok) {
-        // CORREGIDO: se muestra el mensaje real que devuelve el servidor
+
         const error = await respuesta.json().catch(() => ({}));
         alert(error.mensaje || "No se pudo enviar el mensaje");
         return;
@@ -236,12 +232,11 @@ async function eliminarMensaje(id) {
       return;
     }
 
-    cargarMensajes(); // Refrescar el historial
+    cargarMensajes(); 
   } catch (error) {
     console.error("Error al eliminar mensaje:", error);
   }
 }
 
-// ===== Llamados iniciales al cargar la página =====
 cargarProductos();
 cargarMensajes();
